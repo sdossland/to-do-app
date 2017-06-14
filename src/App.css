@@ -1,0 +1,18 @@
+/*.container {*/
+  /*background: url(''); */
+/*}*/
+.title {
+  font-size: 36px;
+}
+.row {
+  height: 2.5em;
+  line-height: 2.5em;
+}
+.listName:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+button:hover {
+  cursor: pointer;
+}
+
