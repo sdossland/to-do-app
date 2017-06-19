@@ -1,6 +1,18 @@
-/*.container {*/
+/*.container-fluid {*/
   /*background: url(''); */
 /*}*/
+#list-summary-active {
+  border: 1px solid #f2f2f2;
+  box-shadow: 0 0 25px #f2f2f2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 15px;
+}
+#list-summary-inactive {
+  height: 100vh;
+  float: left;
+}
 .title {
   font-size: 36px;
 }
@@ -55,6 +67,7 @@ button:hover {
 }
 input[type="text"] {
   border: none;
+  width: 100%;
 }
 input[value=""]:not(:focus) {
   border-bottom: 1px solid #b3b3b3 !important;
@@ -72,9 +85,3 @@ input[value=""]:not(:focus) {
   /*width: 100%;*/
   /*margin-bottom: 1em;*/
 /*}*/
-/*.modal-subtitle {*/
-  /*font-size: 16px;*/
-  /*font-weight: 300;*/
-/*}*/
-
-

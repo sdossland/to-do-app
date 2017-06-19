@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import Lists from './Lists';
 import './App.css';
 
@@ -20,28 +21,39 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lists: [],
-      loaded: false
+      lists
     }
   }
-  componentDidMount() {
-    this.setState({
-      lists: lists,
-      loaded: true
-    })
-  }
+  editList = (newList) => {
+    var lists = this.state.lists.slice();
+    var key = _.findIndex(lists, function(list) { return list.id === newList.id;});
+    console.log(lists);
+    console.log(key);
+    console.log(newList);
+    lists[key] = newList;
+    this.setState({ lists })
+  };
+  deleteList = (key) => {
+    var lists = this.state.lists.slice();
+    lists.splice(key, 1);
+    this.setState({ lists })
+  };
+  addNewList = (newList) => {
+    var lists = this.state.lists.slice();
+    lists.push(newList);
+    this.setState({ lists })
+  };
   render() {
-    return this.state.loaded ? (
+    return (
       <div className="container-fluid">
-        <Lists lists={this.state.lists} />
+        <Lists lists={this.state.lists} editList={this.editList} deleteList={this.deleteList} addNewList={this.addNewList} />
         {/*<div className="app-intro">*/}
-
           {/*<div className="row">*/}
             {/*<p className="app-directions">Click to get started.</p>*/}
           {/*</div>*/}
         {/*</div>*/}
       </div>
-    ) : <div>Loading...</div>
+    );
   }
 }
 
