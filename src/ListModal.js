@@ -6,13 +6,14 @@ import React from 'react';
 const initialState = ({
   id: Number(),
   name: '',
-  tasks: []
+  tasks: [],
+  newTask: ''
 });
 
 class ListModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.list ? Object.assign({}, props.list) : Object.assign({}, initialState);
+    this.state = props.list ? Object.assign({}, props.list, {newTask: ''}) : Object.assign({}, initialState);
   }
   getOnChangeName = (key) => (e) => {
     this.setState({
@@ -24,13 +25,26 @@ class ListModal extends React.Component {
     tasks[key] = e.target.value;
     this.setState({ tasks });
   };
+  getOnChangeNewTask = (e) => {
+    this.setState({
+      newTask: e.target.value
+    });
+  };
+  addNewTask = (e) => {
+    var tasks = this.state.tasks.slice();
+    var newTask = { task: e.target.value, checked: false };
+    if (e.key === 'Enter') {
+      tasks.push(newTask);
+      this.setState({
+        tasks,
+        newTask: ''
+      });
+    }
+  };
   toggleCheckBox = (key) => () => {
     var tasks = this.state.tasks.slice();
     tasks[key].checked = !tasks[key].checked;
     this.setState({ tasks });
-  };
-  addNewTask = (key) => () => {
-    
   };
   handleOutsideClick = (e) => {
     // e.preventDefault();
@@ -68,7 +82,7 @@ class ListModal extends React.Component {
           <hr />
           {tasks}
           <div className="row">
-            <input className="modal-task" type="text" placeholder="Add new task" value={this.state.newTask} /*onChange={this.getOnChange('tasks')}*/ />
+            <input className="modal-task" type="text" placeholder="Add new task" value={this.state.newTask} onChange={this.getOnChangeNewTask} onKeyPress={this.addNewTask} />
           </div>
           <div className="row saveCloseBtns">
             <button className="btn btn-default" onClick={this.handleSave}>Save</button>
