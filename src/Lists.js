@@ -51,11 +51,11 @@ class Lists extends React.Component {
     var listNames = this.props.lists.map((list, index) => {
       return (
         <div className="row" key={index} onMouseEnter={this.getOnMouseEnter(index)} onMouseLeave={this.onMouseLeave}>
-          <div className="listName">{list.name}</div>
+          <div className="listName" onClick={this.getOpenModal(index)}>{list.name}</div>
           { this.state.hoverIndex === index && this.state.hover ?
             <div className="editDeleteRow">
-              <button className="btn btn-default" onClick={this.getOpenModal(index)}>Edit List</button>
-              <button className="btn btn-default" onClick={this.handleDelete(index)}>Delete List</button>
+              <button className="btn btn-default center-btn" onClick={this.getOpenModal(index)}>Edit List</button>
+              <button className="btn btn-default center-btn" onClick={this.handleDelete(index)}>Delete List</button>
             </div>
           : null }
         </div>
@@ -78,7 +78,6 @@ class Lists extends React.Component {
                                              closeModal={this.closeModal}
                                              list={this.props.lists[this.state.key]}
                                              editList={this.props.editList}
-                                             //test={this.state.key}
                                              addNewList={this.props.addNewList}
         /> }
       </div>

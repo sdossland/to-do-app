@@ -6,15 +6,15 @@ import './App.css';
 var lists = [{
   id: 0,
   name: 'Personal',
-  items: ['vacuum', 'meal prep', 'clean kitchen', 'laundry', 'work out']
+  tasks: [{task: 'vacuum', checked: false}, {task: 'meal prep', checked: false}, {task: 'clean kitchen', checked: false}, {task: 'laundry', checked: false}, {task: 'work out', checked: false}]
 }, {
   id: 1,
   name: 'Shopping',
-  items: ['oranges', 'lemons', 'apples', 'kale', 'celery', 'cucumber', 'ginger', 'tea', 'sparkling water', 'laundry detergent', 'shampoo and conditioner']
+  tasks: [{task: 'oranges', checked: false}, {task: 'lemons', checked: false}, {task: 'apples', checked: false}, {task: 'kale', checked: false}, {task: 'celery', checked: false}, {task: 'cucumber', checked: false}, {task: 'ginger', checked: false}, {task: 'tea', checked: false}, {task: 'sparkling water', checked: false}, {task: 'laundry detergent', checked: false}, {task: 'shampoo and conditioner', checked: false}]
 }, {
   id: 2,
   name: 'Work',
-  items: ['fix slider bounds logic', 'add \'type\' to listings page', 'fix contact edit buy']
+  tasks: [{task: 'fix slider bounds logic', checked: false}, {task: 'add \'type\' to listings page', checked: false}, {task: 'fix contact edit buy', checked: false}]
 }];
 
 class App extends Component {
