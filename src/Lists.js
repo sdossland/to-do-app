@@ -11,7 +11,6 @@ class Lists extends React.Component {
       hover: false,
       hoverIndex: '',
       showModal: false,
-      // list: {}
     };
   };
   getOnMouseEnter = (hoverIndex) =>
@@ -38,15 +37,13 @@ class Lists extends React.Component {
   closeModal = () => {
     // e.preventDefault();
     this.setState({
-      showModal: false
+      showModal: false,
+      key: '' //reset key so you can add new list after already opened a set list
     })
   };
-  // handleEdit = () => (newList, key) => {
-  //   this.props.editList(newList, key);
-  // };
   handleDelete = (index) => () => {
     this.props.deleteList(index);
-  }
+  };
   render() {
     var listNames = this.props.lists.map((list, index) => {
       return (
@@ -77,6 +74,7 @@ class Lists extends React.Component {
         { this.state.showModal && <ListModal showModal={this.state.showModal}
                                              closeModal={this.closeModal}
                                              list={this.props.lists[this.state.key]}
+                                             lists={this.props.lists}
                                              editList={this.props.editList}
                                              addNewList={this.props.addNewList}
         /> }

@@ -27,9 +27,6 @@ class App extends Component {
   editList = (newList) => {
     var lists = this.state.lists.slice();
     var key = _.findIndex(lists, function(list) { return list.id === newList.id;});
-    console.log(lists);
-    console.log(key);
-    console.log(newList);
     lists[key] = newList;
     this.setState({ lists })
   };

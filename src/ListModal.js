@@ -55,12 +55,12 @@ class ListModal extends React.Component {
   handleSave = (e) => {
     e.preventDefault();
     var newList = {
-      id: this.props.list.id,
+      id: this.props.list ? this.props.list.id : this.props.lists.length,
       name: this.state.name,
       tasks: this.state.tasks
     };
-    //this.props.addNewList(newList);
-    this.props.editList(newList);
+    this.props.list ? this.props.editList(newList) : this.props.addNewList(newList);
+
     this.props.closeModal();
   };
   render() {
