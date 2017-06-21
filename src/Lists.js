@@ -38,7 +38,8 @@ class Lists extends React.Component {
     // e.preventDefault();
     this.setState({
       showModal: false,
-      key: '' //reset key so you can add new list after already opened a set list
+      hoverIndex: false,
+      key: '' //reset key so you can add new list after already opened an existing list
     })
   };
   handleDelete = (index) => () => {

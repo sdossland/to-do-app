@@ -13,12 +13,29 @@ const initialState = ({
 class ListModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.list ? Object.assign({}, props.list, {newTask: ''}) : Object.assign({}, initialState);
+    this.state = props.list ? Object.assign({}, props.list, {newTask: '', hover: false, hoverIndex: ''}) : Object.assign({}, initialState);
+  }
+  getOnMouseEnter = (hoverIndex) =>
+    () => {
+      this.setState({
+        hover: true,
+        hoverIndex
+      })
+  };
+  getOnMouseLeave = () => {
+    this.setState({
+      hover: false
+    })
   }
   getOnChangeName = (key) => (e) => {
     this.setState({
       [key]: e.target.value
     });
+  };
+  toggleCheckBox = (key) => () => {
+    var tasks = this.state.tasks.slice();
+    tasks[key].checked = !tasks[key].checked;
+    this.setState({ tasks });
   };
   getOnChangeTasks = (key) => (e) => {
     var tasks = this.state.tasks.slice();
@@ -41,9 +58,9 @@ class ListModal extends React.Component {
       });
     }
   };
-  toggleCheckBox = (key) => () => {
+  deleteTask = (index) => () => {
     var tasks = this.state.tasks.slice();
-    tasks[key].checked = !tasks[key].checked;
+    tasks.splice(index, 1);
     this.setState({ tasks });
   };
   handleOutsideClick = (e) => {
@@ -66,9 +83,14 @@ class ListModal extends React.Component {
   render() {
     var tasks = this.state.tasks.map((task, index) => {
       return (
-        <div className="row" key={index} >
+        <div className="row taskName" key={index} onMouseEnter={this.getOnMouseEnter(index)} onMouseLeave={this.getOnMouseLeave} >
           <input className="checkBox" type="checkbox" checked={task.checked} onChange={this.toggleCheckBox(index)} />
           <input className="modal-task" type="text" value={task.task} onChange={this.getOnChangeTasks(index)} />
+          { this.state.hoverIndex === index && this.state.hover ?
+            <div className="editDeleteRow">
+              <button className="btn btn-default center-btn" onClick={this.deleteTask(index)}>Delete</button>
+            </div> : null
+          }
         </div>
       )
     });

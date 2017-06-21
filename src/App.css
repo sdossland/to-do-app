@@ -26,9 +26,17 @@
   position: absolute;
   /*z-index: -1;*/
 }
-.listName:hover {
+.listName:hover, .taskName:hover {
   background-color: #f2f2f2;
   cursor: pointer;
+}
+.modal-task>button:hover {
+  background-color: #f2f2f2;
+}
+.modal-task {
+  display: inline-block;
+  position: absolute;
+  background: none;
 }
 .editDeleteRow {
   display: inline-block;
@@ -64,9 +72,9 @@ button:hover {
   padding: 20px;
   max-width: 700px;
 }
-.modal-task {
-  transition: ease-in-out, width .35s ease-in-out;
-}
+/*.modal-task {*/
+  /*transition: ease-in-out, width .35s ease-in-out;*/
+/*}*/
 .modal-task:focus {
   width: 100%;
 }
@@ -76,10 +84,10 @@ button:hover {
 }
 input[type="text"] {
   border: none;
-  width: calc(100% - 30px);
+  width: calc(100% - 35px);
 }
 input[type="text"]:focus {
-  width: calc(100% - 30px);
+  width: calc(100% - 35px);
 }
 input[value=""]:not(:focus) {
   border-bottom: 1px solid #b3b3b3 !important;
